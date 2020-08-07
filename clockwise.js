@@ -6,7 +6,7 @@ function createSpiral(N) {
 
     let
       which_index_will_move_on_next_step = "cellIndex",
-      aDirection = "DOWN", bDirection = "RIGHT",
+      array_index_direction = "DOWN", cell_index_direction = "RIGHT",
       arrayIndex = 0, cellIndex = 0,
       rightBarrier = N-1, downBarrier = N-1, leftBarrier = 0, upBarrier = 1;
 
@@ -16,19 +16,19 @@ function createSpiral(N) {
     
     switch (which_index_will_move_on_next_step) {
       case "cellIndex":
-        if (bDirection === "RIGHT") {
+        if (cell_index_direction === "RIGHT") {
           cellIndex++;
 
           if (cellIndex === rightBarrier) {
-            bDirection = "LEFT";
+            cell_index_direction = "LEFT";
             rightBarrier--;
             which_index_will_move_on_next_step = "arrayIndex"
           }
-        } else if (bDirection === "LEFT") {
+        } else if (cell_index_direction === "LEFT") {
           cellIndex--;
 
           if (cellIndex === leftBarrier) {
-            bDirection = "RIGHT";
+            cell_index_direction = "RIGHT";
             leftBarrier++;
             which_index_will_move_on_next_step = "arrayIndex"
           }
@@ -38,19 +38,19 @@ function createSpiral(N) {
 
 
       case "arrayIndex":
-        if (aDirection === "DOWN") {
+        if (array_index_direction === "DOWN") {
           arrayIndex++;
 
           if (arrayIndex === downBarrier) {
-            aDirection = "UP";
+            array_index_direction = "UP";
             downBarrier--;
             which_index_will_move_on_next_step = "cellIndex";
           }
-        } else if (aDirection === "UP") {
+        } else if (array_index_direction === "UP") {
           arrayIndex--;
 
           if (arrayIndex === upBarrier) {
-            aDirection = "DOWN";
+            array_index_direction = "DOWN";
             upBarrier++;
             which_index_will_move_on_next_step = "cellIndex";
           }
