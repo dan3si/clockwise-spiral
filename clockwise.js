@@ -5,16 +5,16 @@ function createSpiral(N) {
   }
 
     let
-      which_index_will_move_on_next_step = "cellIndex",
-      array_index_direction = "DOWN", cell_index_direction = "RIGHT",
       arrayIndex = 0, cellIndex = 0,
+      array_index_direction = "DOWN", cell_index_direction = "RIGHT",  
+      which_index_is_moving = "cellIndex",      
       rightBarrier = N-1, downBarrier = N-1, leftBarrier = 0, upBarrier = 1;
 
   
-  for (let i = 1; i <= N ** 2; i++) {
-    result[arrayIndex][cellIndex] = i;
+  for (let number = 1; number <= N ** 2; number++) {
+    result[arrayIndex][cellIndex] = number;
     
-    switch (which_index_will_move_on_next_step) {
+    switch (which_index_is_moving) {
       case "cellIndex":
         if (cell_index_direction === "RIGHT") {
           cellIndex++;
@@ -22,7 +22,7 @@ function createSpiral(N) {
           if (cellIndex === rightBarrier) {
             cell_index_direction = "LEFT";
             rightBarrier--;
-            which_index_will_move_on_next_step = "arrayIndex"
+            which_index_is_moving = "arrayIndex"
           }
         } else if (cell_index_direction === "LEFT") {
           cellIndex--;
@@ -30,7 +30,7 @@ function createSpiral(N) {
           if (cellIndex === leftBarrier) {
             cell_index_direction = "RIGHT";
             leftBarrier++;
-            which_index_will_move_on_next_step = "arrayIndex"
+            which_index_is_moving = "arrayIndex"
           }
         }
       break;
@@ -44,7 +44,7 @@ function createSpiral(N) {
           if (arrayIndex === downBarrier) {
             array_index_direction = "UP";
             downBarrier--;
-            which_index_will_move_on_next_step = "cellIndex";
+            which_index_is_moving = "cellIndex";
           }
         } else if (array_index_direction === "UP") {
           arrayIndex--;
@@ -52,7 +52,7 @@ function createSpiral(N) {
           if (arrayIndex === upBarrier) {
             array_index_direction = "DOWN";
             upBarrier++;
-            which_index_will_move_on_next_step = "cellIndex";
+            which_index_is_moving = "cellIndex";
           }
         }
       break;
