@@ -7,27 +7,27 @@ function createSpiral(N) {
     let
       aTurn = false, bTurn = true,
       aDirection = "DOWN", bDirection = "RIGHT",
-      aPosition = 0, bPosition = 0,
+      arrayIndex = 0, cellIndex = 0,
       rightBarrier = N-1, downBarrier = N-1, leftBarrier = 0, upBarrier = 1;
 
   
   for (let i = 1; i <= N ** 2; i++) {
-    result[aPosition][bPosition] = i;
+    result[arrayIndex][cellIndex] = i;
     
     if (bTurn) {
       if (bDirection === "RIGHT") {
-        bPosition++;
+        cellIndex++;
 
-        if (bPosition === rightBarrier) {
+        if (cellIndex === rightBarrier) {
           bDirection = "LEFT";
           rightBarrier--;
           bTurn = false;
           aTurn = true;
         }
       } else if (bDirection === "LEFT") {
-        bPosition--;
+        cellIndex--;
 
-        if (bPosition === leftBarrier) {
+        if (cellIndex === leftBarrier) {
           bDirection = "RIGHT";
           leftBarrier++;
           bTurn = false;
@@ -39,18 +39,18 @@ function createSpiral(N) {
 
     } else if (aTurn) {
       if (aDirection === "DOWN") {
-        aPosition++;
+        arrayIndex++;
 
-        if (aPosition === downBarrier) {
+        if (arrayIndex === downBarrier) {
           aDirection = "UP";
           downBarrier--;
           aTurn = false;
           bTurn = true;
         }
       } else if (aDirection === "UP") {
-        aPosition--;
+        arrayIndex--;
 
-        if (aPosition === upBarrier) {
+        if (arrayIndex === upBarrier) {
           aDirection = "DOWN";
           upBarrier++;
           aTurn = false;
