@@ -65,3 +65,4 @@ function createSpiral(N) {
   } else {
     return []
   }
+}
