@@ -1,4 +1,10 @@
 function createSpiral(N) {
+  if (typeof N !== "number" || N < 1 || N % 1 !== 0) {
+    return [];
+  }
+  
+  
+  
   let result = [];
   for (let i = 0; i < N; i++) {
     result.push([])
@@ -59,9 +65,6 @@ function createSpiral(N) {
     }
   }
   
-  if (typeof N === "number" && N > 0 && N % 1 === 0) {
-    return result
-  } else {
-    return []
-  }
+  
+  return result
 }
