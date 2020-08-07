@@ -5,7 +5,7 @@ function createSpiral(N) {
   }
 
     let
-      aTurn = false, bTurn = true,
+      which_index_will_move_on_next_step = "cellIndex",
       aDirection = "DOWN", bDirection = "RIGHT",
       arrayIndex = 0, cellIndex = 0,
       rightBarrier = N-1, downBarrier = N-1, leftBarrier = 0, upBarrier = 1;
@@ -14,49 +14,48 @@ function createSpiral(N) {
   for (let i = 1; i <= N ** 2; i++) {
     result[arrayIndex][cellIndex] = i;
     
-    if (bTurn) {
-      if (bDirection === "RIGHT") {
-        cellIndex++;
+    switch (which_index_will_move_on_next_step) {
+      case "cellIndex":
+        if (bDirection === "RIGHT") {
+          cellIndex++;
 
-        if (cellIndex === rightBarrier) {
-          bDirection = "LEFT";
-          rightBarrier--;
-          bTurn = false;
-          aTurn = true;
+          if (cellIndex === rightBarrier) {
+            bDirection = "LEFT";
+            rightBarrier--;
+            which_index_will_move_on_next_step = "arrayIndex"
+          }
+        } else if (bDirection === "LEFT") {
+          cellIndex--;
+
+          if (cellIndex === leftBarrier) {
+            bDirection = "RIGHT";
+            leftBarrier++;
+            which_index_will_move_on_next_step = "arrayIndex"
+          }
         }
-      } else if (bDirection === "LEFT") {
-        cellIndex--;
+      break;
 
-        if (cellIndex === leftBarrier) {
-          bDirection = "RIGHT";
-          leftBarrier++;
-          bTurn = false;
-          aTurn = true;
+
+
+      case "arrayIndex":
+        if (aDirection === "DOWN") {
+          arrayIndex++;
+
+          if (arrayIndex === downBarrier) {
+            aDirection = "UP";
+            downBarrier--;
+            which_index_will_move_on_next_step = "cellIndex";
+          }
+        } else if (aDirection === "UP") {
+          arrayIndex--;
+
+          if (arrayIndex === upBarrier) {
+            aDirection = "DOWN";
+            upBarrier++;
+            which_index_will_move_on_next_step = "cellIndex";
+          }
         }
-      }
-
-
-
-    } else if (aTurn) {
-      if (aDirection === "DOWN") {
-        arrayIndex++;
-
-        if (arrayIndex === downBarrier) {
-          aDirection = "UP";
-          downBarrier--;
-          aTurn = false;
-          bTurn = true;
-        }
-      } else if (aDirection === "UP") {
-        arrayIndex--;
-
-        if (arrayIndex === upBarrier) {
-          aDirection = "DOWN";
-          upBarrier++;
-          aTurn = false;
-          bTurn = true;
-        }
-      }
+      break;
     }
   }
   
